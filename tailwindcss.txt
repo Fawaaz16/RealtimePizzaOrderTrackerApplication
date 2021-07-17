@@ -1,0 +1,7 @@
+mx-auto: To set the content within the container(in this case it gives gap to logo and text from the left or right side respectively)
+flex items-center: To get all the container items along a line or along the length of the container and not top to bottom
+justify-between: Arranges all the items all along the length of the container such that they are equally spaced out
+ml-6: Margin left applies
+px and py: Horizontal and vertical padding i.e gives specified space from top and bottom for py and from left and right for px
+For the class section, vertical padding was py-16 originally but changed to py-8 as to remove the scroll option
+

@@ -11,10 +11,13 @@ const expressLayout = require('express-ejs-layouts')
 const PORT = process.env.PORT || 3000 //The easier explanation of this line is as follows
 // const PORT;
 // if(process.envy.PORT) {
-//     PORT=(process.envy.PORT
+//     PORT=process.envy.PORT
 // }else{
 //     PORT = 3000
 // }
+
+//Assets
+app.use(express.static('public'))//Allows hoem.ejs file to locate css file in public folder
 
 app.get('/' , (req, res) => {
     res.render('home')

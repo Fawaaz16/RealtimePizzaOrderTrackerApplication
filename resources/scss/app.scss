@@ -1,0 +1,43 @@
+@import "./variables";
+
+body {
+  font-family: "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: $dark;
+}
+
+//Gives the last child with anchor(a) tag of nav the specified color
+nav li:last-child a {
+  background: $primary;
+
+  &:hover {
+    background: $primary-hover;
+  }
+}
+
+//To give hover affect for all the anchor(a) tag
+nav li a {
+  transition: $smooth; //For smooth transition in the change of color during hover
+  &:hover {
+    color: $primary;
+  }
+}
+
+section.hero {
+  background: $secondary;
+}
+
+.size {
+  background: $secondary;
+}
+
+.add-to-cart {
+  border: 2px solid $primary;
+  color: $primary;
+  transition: $smooth;
+  &:hover {
+    background: $primary;
+    border-color: $pure;
+    color: $pure;
+  }
+}
