@@ -17,15 +17,28 @@ const PORT = process.env.PORT || 3000 //The easier explanation of this line is a
 // }
 
 //Assets
-app.use(express.static('public'))//Allows hoem.ejs file to locate css file in public folder
+app.use(express.static('public'))//Allows home.ejs file to locate css file in public folder
+
+app.use(expressLayout) //Setting the template engine and now express will know what layout to use i.e. express-ejs-layouts
+app.set('views', path.join(__dirname, '/resources/views')) //Setting direction to template files
+app.set('view engine', 'ejs')
 
 app.get('/' , (req, res) => {
     res.render('home')
 })
 
-app.use(expressLayout) //Setting the template engine and now express will know what layout to use i.e. express-ejs-layouts
-app.set('views', path.join(__dirname, '/resources/views')) //Setting direction to template files
-app.set('view engine', 'ejs')
+app.get('/cart' , (req, res) => {
+    res.render('customers/cart')
+})
+
+app.get('/login' , (req, res) => {
+    res.render('auth/login')
+})
+
+app.get('/register' , (req, res) => {
+    res.render('auth/register')
+})
+
 
 app.listen(PORT , () => {
     console.log(`Listening on port ${PORT}`)//Observe that backticks are used here
