@@ -10,7 +10,7 @@ const path = require('path') //path is an inbuilt node module that is not needed
 
 const expressLayout = require('express-ejs-layouts')
 
-
+const passport = require('passport')
 
 const PORT = process.env.PORT || 3000 //The easier explanation of this line is as follows
 // const PORT;
@@ -42,6 +42,7 @@ connection.once('open', () => {
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended:true}));
 
+
 //Session store
 let mongoStore = new MongoDbStore({
                 mongooseConnection: connection,
@@ -59,14 +60,22 @@ app.use(session({
 
 app.use(flash())
 
+//Passport config(should be done after session configuration)
+const passportInit = require('./app/config/passport')
+passportInit(passport)
+app.use(passport.initialize())//Analysis required
+app.use(passport.session())////Analysis required
+
 //Assets
 app.use(express.static('public'))//Allows home.ejs file to locate css file in public folder
 
+app.use(express.urlencoded({ extended : false })) //Used fo enabling data to be read by postRegister method of authController file
 app.use(express.json()) 
 
 //Global middleware =>Analysis required
 app.use((req, res, next) => {
     res.locals.session = req.session//This way we make session global so that it can be used in frontend
+    res.locals.user = req.user
     next()
 })
 

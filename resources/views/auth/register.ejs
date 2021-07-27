@@ -15,7 +15,12 @@
               </a>
             </p> -->
           </div>
-          <form class="mt-8 space-y-6" action="#" method="POST">
+          <form action="/register" method="POST" class="mt-8 space-y-6" action="#" method="POST">
+            <!-- All the messages we send in flash are available in frontend -->
+            <% if(messages.error) { %>
+            <span class="text-red-500 text-sm"><%= messages.error%></span>
+            <!-- We use = in ejs tags to display something -->
+            <% } %>
             <input type="hidden" name="remember" value="true">
             <div class="rounded-md shadow-sm">
                 <!-- -space-y-px -->
@@ -59,7 +64,7 @@
                     <!-- <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" /> -->
                   <!-- </svg> -->
                 </span>
-                Sign in
+                Register
               </button>
             </div>
           </form>
