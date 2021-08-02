@@ -74,7 +74,7 @@ app.use(express.json())
 
 //Global middleware =>Analysis required
 app.use((req, res, next) => {
-    res.locals.session = req.session//This way we make session global so that it can be used in frontend
+    res.locals.session = req.session//This way we make session global so that it can be used in frontend by mounting it to response
     res.locals.user = req.user
     next()
 })

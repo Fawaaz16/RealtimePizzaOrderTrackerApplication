@@ -25,7 +25,7 @@ function init (passport) {
         done(null, user._id)
     })
 
-    passport.deserializeUser((id, done) => {
+    passport.deserializeUser((id, done) => {//deserializeUser allows us to directly use req.user in our application
         User.findById(id, (err, user) => {
             done(err, user)
         })

@@ -1,11 +1,12 @@
 import axios from 'axios'
+import initAdmin from './admin'
 
 let addToCart = document.querySelectorAll('.add-to-cart')//Get all the add to cart buttons. addToCart is an array.
 let cartCounter = document.querySelector('#cartCounter')//# is for selecting id
 
 
 function updateCart(pizza) {
-    axios.post('/update-cart', pizza).then(res => {
+    axios.post('/update-cart', pizza).then(res => {//We make an ajax call using axios library here as it is used to send requests to server
         cartCounter.innerText = res.data.totalQty//Analysis required
         // new Noty({
         //     text: "New item added"
@@ -22,3 +23,5 @@ addToCart.forEach((btn) => {
         //JSON string is converted into object using JSON parse
     })
 })
+
+initAdmin()
