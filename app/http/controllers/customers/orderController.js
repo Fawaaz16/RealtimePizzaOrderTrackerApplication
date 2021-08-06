@@ -7,7 +7,7 @@ function orderController () {
             const { phone, address} = req.body
 
             if(!phone || !address) {
-                res.flash('error', 'Enter all the fields')
+                req.flash('error', 'Enter all the fields')
                 return res.redirect('/cart')
             }
 
@@ -30,6 +30,14 @@ function orderController () {
         async index(req, res) {
             const orders = await Order.find({ customerId: req.user._id}, null, { sort:{ 'createdAt': -1 } })
             res.render('customers/orders', {orders: orders, moment: moment})
+        },
+        async show(req, res) {
+            const order = await Order.findById(req.params.id)//:id is a param
+            // Authorize user
+            if(req.user._id.toString() === order.customerId.toString()) {
+                return res.render('customers/singleOrder', { order: order })
+            }
+            return  res.redirect('/')
         }
     }
 }
